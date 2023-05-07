@@ -3,7 +3,7 @@ import os
 from setuptools import setup
 from os import walk, path
 
-URL = "https://github.com/rushic24/MyMockApiSkilldemo"
+URL = "https://github.com/rushic24/EWON-ovos-skills"
 SKILL_CLAZZ = "MyTestSkill"  # needs to match __init__.py class name
 PYPI_NAME = "ovos-skill-MyTestSkill"  # pip install PYPI_NAME
 
