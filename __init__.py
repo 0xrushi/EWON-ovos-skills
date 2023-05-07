@@ -3,7 +3,7 @@ from mycroft import MycroftSkill, intent_handler
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_utils import classproperty
 from api_scripts.rememberme    import write_to_db, recall_stuff
-from api_scripts.ewon  import parse_emotion
+from api_scripts.ewon  import send_emotion
 
 #def parse_emotion():
 #    print("qqqww")
@@ -51,7 +51,7 @@ class MyEwonSkill(MycroftSkill):
     @intent_handler('GoToSleep.intent')
     def go_to_sleep(self, message):
         self.speak_dialog("go.toooooo")
-        parse_emotion()
+        send_emotion("sad")
     
     @intent_handler(IntentBuilder('RememberMeIntent')
                     .require('RememberTo'))
