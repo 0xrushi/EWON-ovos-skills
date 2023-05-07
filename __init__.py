@@ -3,8 +3,10 @@ from mycroft import MycroftSkill, intent_handler
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_utils import classproperty
 from api_scripts.rememberme    import write_to_db, recall_stuff
-from api_scripts.ewon  import parse_emotion
+#from api_scripts.ewon  import parse_emotion
 
+def parse_emotion():
+    print("qqqww")
 
 class MyEwonSkill(MycroftSkill):
     def __init__(self):
