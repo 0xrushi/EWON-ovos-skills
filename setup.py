@@ -4,8 +4,8 @@ from setuptools import setup
 from os import walk, path
 
 URL = "https://github.com/rushic24/EWON-ovos-skills"
-SKILL_CLAZZ = "MyTestSkill"  # needs to match __init__.py class name
-PYPI_NAME = "ovos-skill-MyTestSkill"  # pip install PYPI_NAME
+SKILL_CLAZZ = "MyEwonSkill"  # needs to match __init__.py class name
+PYPI_NAME = "ovos-skill-MyEwonSkill"  # pip install PYPI_NAME
 
 # below derived from github url to ensure standard skill_id
 SKILL_AUTHOR, SKILL_NAME = URL.split(".com/")[-1].split("/")
@@ -62,7 +62,7 @@ setup(
     long_description=long_description,
     url=URL,
     author=SKILL_AUTHOR,
-    description='OVOS MyMockApiSkilldemo plugin',
+    description='OVOS MyEwonSkill plugin',
     author_email='test@mailfence.com',
     license='Apache-2.0',
     package_dir={SKILL_PKG: ""},

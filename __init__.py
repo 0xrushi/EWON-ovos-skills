@@ -3,8 +3,10 @@ from mycroft import MycroftSkill, intent_handler
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_utils import classproperty
 from api_scripts.rememberme    import write_to_db, recall_stuff
+from api_scripts.ewon  import parse_emotion
 
-class MyTestSkill(MycroftSkill):
+
+class MyEwonSkill(MycroftSkill):
     def __init__(self):
         """ The __init__ method is called when the Skill is first constructed.
         It is often used to declare variables or perform setup actions, however
@@ -43,6 +45,11 @@ class MyTestSkill(MycroftSkill):
         It is triggered using a list of sample phrases."""
         self.speak_dialog("how.are.you")
         self.log.info("Message parsed is " + str(message))
+    
+    @intent_handler('GoToSleep.intent')
+    def go_to_sleep(self, message):
+        self.speak_dialog("go.toooooo")
+        parse_emotion()
     
     @intent_handler(IntentBuilder('RememberMeIntent')
                     .require('RememberTo'))
@@ -85,4 +92,4 @@ class MyTestSkill(MycroftSkill):
 
 
 def create_skill():
-    return MyTestSkill()
+    return MyEwonSkill()
