@@ -223,7 +223,7 @@ emotions = [
 emotions = [['sad']]
 
 
-def parse_emotion(emotions= emotions)
+def parse_emotion(emotions= [['sad']]):
     try:
         for emotion_list in emotions:
             for emotion in emotion_list:
