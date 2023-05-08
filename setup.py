@@ -13,6 +13,8 @@ SKILL_PKG = SKILL_NAME.lower().replace('-', '_')
 PLUGIN_ENTRY_POINT = f'{SKILL_NAME.lower()}.{SKILL_AUTHOR.lower()}={SKILL_PKG}:{SKILL_CLAZZ}'
 # skill_id=package_name:SkillClass
 
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
 
 def find_resource_files():
     resource_base_dirs = ("locale", "ui", "vocab", "dialog", "regex", "skill")
@@ -71,4 +73,5 @@ setup(
     include_package_data=True,
     keywords='ovos skill plugin',
     entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT}
+    install_requires=requirements
 )
