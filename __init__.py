@@ -3,8 +3,8 @@ from mycroft import MycroftSkill, intent_handler
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_utils import classproperty
 from playsound import playsound
-import os
-import multiprocessing
+import sounddevice as sd
+import soundfile as sf
 from api_scripts.rememberme    import write_to_db, recall_stuff
 from api_scripts.ewon  import send_emotion
 
@@ -53,7 +53,10 @@ class MyEwonSkill(MycroftSkill):
         self.speak_dialog("go.toooooo")
         send_emotion("sad")
         snore_path = "/home/ovos/.config/mycroft/sounds/snoring.wav"
-        playsound(snore_path)
+        data, fs = sf.read(filename, dtype='float32')
+        sd.play(data, fs)
+        sd.wait()  # Wait until sound has finished playing
+        # playsound(snore_path)
         # p1 = multiprocessing.Process(target=playsound, args=(snore_path, ))
         # p2 = multiprocessing.Process(target=send_emotion, args=("sad", ))
         # p1.start()   
