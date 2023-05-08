@@ -51,13 +51,15 @@ class MyEwonSkill(MycroftSkill):
     @intent_handler('GoToSleep.intent')
     def go_to_sleep(self, message):
         self.speak_dialog("go.toooooo")
+        send_emotion("sad")
         snore_path = "/home/ovos/.config/mycroft/sounds/snoring.wav"
-        p1 = multiprocessing.Process(target=playsound, args=(snore_path, ))
-        p2 = multiprocessing.Process(target=send_emotion, args=("sad", ))
-        p1.start()   
-        p2.start()
-        p1.join()
-        p2.join()
+        playsound(snore_path)
+        # p1 = multiprocessing.Process(target=playsound, args=(snore_path, ))
+        # p2 = multiprocessing.Process(target=send_emotion, args=("sad", ))
+        # p1.start()   
+        # p2.start()
+        # p1.join()
+        # p2.join()
     
     @intent_handler(IntentBuilder('RememberMeIntent')
                     .require('RememberTo'))
