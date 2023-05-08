@@ -53,7 +53,7 @@ class MyEwonSkill(MycroftSkill):
         self.speak_dialog("go.toooooo")
         send_emotion("sad")
         snore_path = "/home/ovos/.config/mycroft/sounds/snoring.wav"
-        data, fs = sf.read(filename, dtype='float32')
+        data, fs = sf.read(snore_path, dtype='float32')
         sd.play(data, fs)
         sd.wait()  # Wait until sound has finished playing
         # playsound(snore_path)
