@@ -2,7 +2,6 @@ from adapt.intent import IntentBuilder
 from mycroft import MycroftSkill, intent_handler
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_utils import classproperty
-from playsound import playsound
 import sounddevice as sd
 import soundfile as sf
 from api_scripts.rememberme    import write_to_db, recall_stuff
