@@ -51,7 +51,7 @@ class MyEwonSkill(MycroftSkill):
     @intent_handler('GoToSleep.intent')
     def go_to_sleep(self, message):
         self.speak_dialog("go.toooooo")
-        snore_path = os.path.expanduser("~/ovos/config/sounds/snoring.wav")
+        snore_path = "/home/ovos/.config/mycroft/sounds"
         p1 = multiprocessing.Process(target=playsound, args=(snore_path, ))
         p2 = multiprocessing.Process(target=send_emotion, args=("sad", ))
         p1.start()   
