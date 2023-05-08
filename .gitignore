@@ -3,3 +3,7 @@
 settings.json
 .vscode
 api_scripts/oai.py
+venv
+build
+dist
+*.egg-info

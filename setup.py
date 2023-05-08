@@ -72,6 +72,6 @@ setup(
     packages=[SKILL_PKG, "api_scripts"],
     include_package_data=True,
     keywords='ovos skill plugin',
-    entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT}
+    entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT},
     install_requires=requirements
 )
