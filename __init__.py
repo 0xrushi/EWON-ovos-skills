@@ -49,7 +49,7 @@ class MyEwonSkill(MycroftSkill):
     
     @intent_handler('GoToSleep.intent')
     def go_to_sleep(self, message):
-        result = send_emotion("sad")
+        result = send_emotion("sleep")
         snore_path = "/home/ovos/.config/mycroft/sounds/snoring.wav"
         data, fs = sf.read(snore_path, dtype='float32')
         sd.play(data, fs)
