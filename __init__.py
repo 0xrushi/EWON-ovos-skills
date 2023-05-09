@@ -61,6 +61,13 @@ class MyEwonSkill(MycroftSkill):
         # p2.start()
         # p1.join()
         # p2.join()
+    @intent_handler('WakeUp.intent')
+    def wake_up(self, message):
+        result = send_emotion("default")
+        # snore_path = "/home/ovos/.config/mycroft/sounds/snoring.wav"
+        # data, fs = sf.read(snore_path, dtype='float32')
+        # sd.play(data, fs)
+        # sd.wait()  # Wait until sound has finished playing
     
     @intent_handler(IntentBuilder('RememberMeIntent')
                     .require('RememberTo'))
