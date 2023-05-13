@@ -1,0 +1,14 @@
+[ExposeKubernetesDeployment]
+(kubectl|QCTL|Cube Cuttles) expose deployment {deployment_name} (((with|using| with service| with service type) |) (as |) {service_type} ((on|at) {port}|(part|port) {port}) ((map to|mapped to|forwarded to) ((target| target port| port)|) {target_port}|)|)
+
+[ScaleKubernetesDeployment]
+(kubectl|QCTL) scale deployment {deployment_name} --replicas={replica_count}
+
+[DeleteKubernetesDeployment]
+(kubectl|QCTL) delete deployment {deployment_name}
+
+[GetKubernetesPods]
+(kubectl|QCTL) get pods
+
+[GetKubernetesServices]
+(kubectl|QCTL) get services

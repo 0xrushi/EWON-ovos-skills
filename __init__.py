@@ -61,6 +61,11 @@ class MyEwonSkill(MycroftSkill):
         # p2.start()
         # p1.join()
         # p2.join()
+    @intent_handler('ExposeKubernetesDeployment.intent')    
+    def expose_kubernetes_deployment(self, message):
+        received_text = message.data.get('utterance')
+        self.log.info("Messagek parsed is " + str(received_text))
+        self.speak_dialog("exposing.deployment")
     @intent_handler('WakeUp.intent')
     def wake_up(self, message):
         result = send_emotion("default")
