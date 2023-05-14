@@ -1,0 +1,1 @@
+(kubectl|QCTL|Cube Cuttles|cube city|cube cdl|cube ctl|cube city will|cube cutter) (exposed|expose|express|export|exports) deployment {deployment_name} (((with|using)|)((type|service|service type) {service_type}|)  ((service|) ((on|at|port) {port}|(part|port) {port})|) (((map to|mapped to|forwarded to)|) ((target| target port| port)|) {target_port}|)|)
