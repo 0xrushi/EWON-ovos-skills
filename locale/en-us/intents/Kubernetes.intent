@@ -1,14 +1,19 @@
 [ExposeKubernetesDeployment]
-(kubectl|QCTL|Cube Cuttles) expose deployment {deployment_name} (((with|using| with service| with service type) |) (as |) {service_type} ((on|at) {port}|(part|port) {port}) ((map to|mapped to|forwarded to) ((target| target port| port)|) {target_port}|)|)
+(kubectl|QCTL|Cube Cuttles|cube city|cube cdl|cube ctl|cube city will|cube cutter) (exposed|expose|express|export|exports) deployment {deployment_name} (((with|using)|)((type|service|service type) {service_type}|)  ((service|) ((on|at|port) {port}|(part|port) {port})|) (((map to|mapped to|forwarded to)|) ((target| target port| port)|) {target_port}|)|)
 
-[ScaleKubernetesDeployment]
-(kubectl|QCTL) scale deployment {deployment_name} --replicas={replica_count}
+[GetAnything]
+(kubectl|QCTL|Cube Cuttles|cube city|cube cdl|cube ctl|cube city will|cube cutter) (get|gate) (parts|pods|ns|nodes|services|svc) ((minus o wide|)(((minus n|from namespace) {namespace_name}| all namespaces)|)|(((minus n|from namespace) {namespace_name}| all namespaces)|)(minus o wide|))
 
-[DeleteKubernetesDeployment]
-(kubectl|QCTL) delete deployment {deployment_name}
+[DeleteKubernetes]
+(kubectl|QCTL|Cube Cuttles|cube city|cube cdl|cube ctl|cube city will|cube cutter) (clear|delete) (all|) (all|pods|deployments|services) (from|) namespace {namespace_name}
+(kubectl|QCTL|Cube Cuttles|cube city|cube cdl|cube ctl|cube city will|cube cutter) delete (service|svc|deploy|pod) {argument_name} (from|) (namespace {namespace_name}|)
 
-[GetKubernetesPods]
-(kubectl|QCTL) get pods
+[ScaleKubernetes]
+(kubectl|QCTL|Cube Cuttles|cube city|cube cdl|cube ctl|cube city will|cube cutter) scale minus minus (replicas|replica is) (equal|equals) (to|) {scale_factor}
+(kubectl|QCTL|Cube Cuttles|cube city|cube cdl|cube ctl|cube city will|cube cutter) scale with {scale_factor} (replicas|replica)
 
-[GetKubernetesServices]
-(kubectl|QCTL) get services
+[CdBash]
+(can you|) (cd|change directory|city|cd2) (to|) {path_argument}
+
+[FindFiles]
+(look|search|find) for (files|file|folders|files and folders|folders and files|directories|directory) ((starting|ending)|) (with|having|containing) {query}
