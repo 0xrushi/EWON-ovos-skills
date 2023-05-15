@@ -45,7 +45,7 @@ def change_directory(target_path, ask_yesno):
         if not response_flag:
             # response = input("Path not found. Do you want to go one directory back? (y/n): ")
             response = ask_yesno("Path not found. Do you want to go one directory back?")
-        if response.lower() == "y":
+        if response == "yes":
             # Move one directory back
             target_path = os.path.dirname(target_path)
             response_flag = True
