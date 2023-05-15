@@ -6,6 +6,58 @@ import sounddevice as sd
 import soundfile as sf
 from api_scripts.rememberme    import write_to_db, recall_stuff
 from api_scripts.ewon  import send_emotion
+import os 
+
+def convert_to_path(input_string):
+    """
+    returns a path from the requested cd command
+    
+    "can you cd to slash home slash bread slash dot config slash o-boss" -> /home/bread/.config/o-boss
+
+    """
+    # Find the index of the first slash
+    first_slash_index = input_string.find("slash")
+
+    # Extract the substring starting from the first slash
+    path = input_string[first_slash_index:]
+
+    path = path.replace("slash", "/")
+
+    path = path.replace("dot", ".")
+
+    path = path.strip("/")
+
+    path = path.replace(" ", "")
+
+    return "/" + path
+
+def change_directory(target_path):
+    """
+    Change the current directory to a specified target path.
+
+    If the target path doesn't exist, prompt the user (once) to recursively go back and change to a valid path.
+
+    Returns:
+        True if the change of directory was successful.
+    """
+    response_flag = False
+    while not os.path.isdir(target_path) and target_path != "/":
+        if not response_flag:
+            response = input("Path not found. Do you want to go one directory back? (y/n): ")
+        if response.lower() == "y":
+            # Move one directory back
+            target_path = os.path.dirname(target_path)
+            response_flag = True
+        else:
+            return False
+
+    if target_path != "/":
+        os.chdir(target_path)
+        print("Changed directory to:", os.getcwd())
+    else:
+        print("Path does not exist")
+
+    return True
 
 class MyEwonSkill(MycroftSkill):
     def __init__(self):
@@ -61,11 +113,22 @@ class MyEwonSkill(MycroftSkill):
         # p2.start()
         # p1.join()
         # p2.join()
-    @intent_handler('ExposeKubernetesDeployment.intent')    
+    @intent_handler('KubectlExposeDeployment.intent')    
     def expose_kubernetes_deployment(self, message):
         received_text = message.data.get('utterance')
         self.log.info("Messagek parsed is " + str(received_text))
         self.speak_dialog("exposing.deployment")
+
+    @intent_handler('CdBash.intent')    
+    def cdbash(self, message):
+        received_text = message.data.get('utterance')
+        self.log.info("Messagek parsed is " + str(received_text))
+        self.speak_dialog("exposing.cdbahs")
+        self.log.debug("previous curdir " + str(os.getcwd()))
+        change_directory(convert_to_path(received_text))
+        self.log.debug("current curdir " + str(os.getcwd()))
+
+
     @intent_handler('WakeUp.intent')
     def wake_up(self, message):
         result = send_emotion("default")
