@@ -31,7 +31,7 @@ def convert_to_path(input_string):
 
     return "/" + path
 
-def change_directory(target_path):
+def change_directory(target_path, ask_yesno):
     """
     Change the current directory to a specified target path.
 
@@ -43,7 +43,8 @@ def change_directory(target_path):
     response_flag = False
     while not os.path.isdir(target_path) and target_path != "/":
         if not response_flag:
-            response = input("Path not found. Do you want to go one directory back? (y/n): ")
+            # response = input("Path not found. Do you want to go one directory back? (y/n): ")
+            response = ask_yesno("Path not found. Do you want to go one directory back?")
         if response.lower() == "y":
             # Move one directory back
             target_path = os.path.dirname(target_path)
@@ -125,7 +126,7 @@ class MyEwonSkill(MycroftSkill):
         self.log.info("Messagek parsed is " + str(received_text))
         self.speak_dialog("exposing.cdbahs")
         self.log.info("previous curdir " + str(os.getcwd()))
-        change_directory(convert_to_path(received_text))
+        change_directory(convert_to_path(received_text), self.ask_yesno)
         self.log.info("current curdir " + str(os.getcwd()))
 
 
