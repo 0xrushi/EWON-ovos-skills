@@ -132,7 +132,7 @@ class MyEwonSkill(MycroftSkill):
         self.log.info("Messagek parsed is " + str(received_text))
         self.speak_dialog("exposing.cdbahs")
         self.log.info("previous curdir " + str(os.getcwd()))
-        self.change_directory(convert_to_path(received_text), self.handle_change_directory_prompt)
+        change_directory(convert_to_path(received_text), self.handle_change_directory_prompt)
         self.log.info("current curdir " + str(os.getcwd()))
 
 
