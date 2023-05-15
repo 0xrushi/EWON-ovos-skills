@@ -124,9 +124,9 @@ class MyEwonSkill(MycroftSkill):
         received_text = message.data.get('utterance')
         self.log.info("Messagek parsed is " + str(received_text))
         self.speak_dialog("exposing.cdbahs")
-        self.log.debug("previous curdir " + str(os.getcwd()))
+        self.log.info("previous curdir " + str(os.getcwd()))
         change_directory(convert_to_path(received_text))
-        self.log.debug("current curdir " + str(os.getcwd()))
+        self.log.info("current curdir " + str(os.getcwd()))
 
 
     @intent_handler('WakeUp.intent')
