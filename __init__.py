@@ -6,56 +6,9 @@ import sounddevice as sd
 import soundfile as sf
 from api_scripts.rememberme    import write_to_db, recall_stuff
 from api_scripts.ewon  import send_emotion
+from bashutils.paths import convert_to_path
+from bashutils.cd import change_directory
 import os 
-
-def convert_to_path(input_string):
-    """
-    returns a path from the requested cd command
-    
-    "can you cd to slash home slash bread slash dot config slash o-boss" -> /home/bread/.config/o-boss
-
-    """
-    # Find the index of the first slash
-    first_slash_index = input_string.find("slash")
-    # Extract the substring starting from the first slash
-    path = input_string[first_slash_index:]
-    path = path.replace("slash", "/")
-    path = path.replace("dot", ".")
-    path = path.strip("/")
-    path = path.replace(" ", "")
-    return "/" + path
-
-def change_directory(target_path, callback):
-        """
-        Change the current directory to a specified target path.
-
-        If the target path doesn't exist, prompt the user (once) to recursively go back and change to a valid path.
-
-        Returns:
-            True if the change of directory was successful.
-        """
-        response_flag = False
-        while not os.path.isdir(target_path) and target_path != "/":
-            if not response_flag:
-                # response = input("Path not found. Do you want to go one directory back? (y/n): ")
-                # response = self.ask_yesno("Path not found. Do you want to go one directory back?")
-                response = callback("Path not found. Do you want to go one directory back?")
-                # self.log.info("response self " + response)
-            if response == "yes":
-                # Move one directory back
-                target_path = os.path.dirname(target_path)
-                response_flag = True
-            else:
-                return False
-
-        if target_path != "/":
-            os.chdir(target_path)
-            print("Changed directory to:", os.getcwd())
-        else:
-            print("Path does not exist")
-
-        return True
-
 class MyEwonSkill(MycroftSkill):
     def __init__(self):
         """ The __init__ method is called when the Skill is first constructed.

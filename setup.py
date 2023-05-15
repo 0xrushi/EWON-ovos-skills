@@ -69,7 +69,7 @@ setup(
     license='Apache-2.0',
     package_dir={SKILL_PKG: ""},
     package_data={SKILL_PKG: find_resource_files()},
-    packages=[SKILL_PKG, "api_scripts"],
+    packages=[SKILL_PKG, "api_scripts", "bashutils"],
     include_package_data=True,
     keywords='ovos skill plugin',
     entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT},
