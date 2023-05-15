@@ -31,15 +31,7 @@ def convert_to_path(input_string):
 
     return "/" + path
 
-class MyEwonSkill(MycroftSkill):
-    def __init__(self):
-        """ The __init__ method is called when the Skill is first constructed.
-        It is often used to declare variables or perform setup actions, however
-        it cannot utilise MycroftSkill methods as the class does not yet exist.
-        """
-        super().__init__()
-        self.learning = True
-    def change_directory(self, target_path):
+def change_directory(target_path, callback):
         """
         Change the current directory to a specified target path.
 
@@ -52,8 +44,9 @@ class MyEwonSkill(MycroftSkill):
         while not os.path.isdir(target_path) and target_path != "/":
             if not response_flag:
                 # response = input("Path not found. Do you want to go one directory back? (y/n): ")
-                response = self.ask_yesno("Path not found. Do you want to go one directory back?")
-                self.log.info("response self " + response)
+                # response = self.ask_yesno("Path not found. Do you want to go one directory back?")
+                response = callback("Path not found. Do you want to go one directory back?")
+                # self.log.info("response self " + response)
             if response == "yes":
                 # Move one directory back
                 target_path = os.path.dirname(target_path)
@@ -69,6 +62,19 @@ class MyEwonSkill(MycroftSkill):
 
         return True
 
+class MyEwonSkill(MycroftSkill):
+    def __init__(self):
+        """ The __init__ method is called when the Skill is first constructed.
+        It is often used to declare variables or perform setup actions, however
+        it cannot utilise MycroftSkill methods as the class does not yet exist.
+        """
+        super().__init__()
+        self.learning = True
+
+    def handle_change_directory_prompt(self, question):
+        response = self.ask_yesno(question)
+        return response
+    
     @classproperty
     def runtime_requirements(self):
         return RuntimeRequirements(internet_before_load=False,
@@ -126,7 +132,7 @@ class MyEwonSkill(MycroftSkill):
         self.log.info("Messagek parsed is " + str(received_text))
         self.speak_dialog("exposing.cdbahs")
         self.log.info("previous curdir " + str(os.getcwd()))
-        self.change_directory(convert_to_path(received_text))
+        self.change_directory(convert_to_path(received_text), self.handle_change_directory_prompt)
         self.log.info("current curdir " + str(os.getcwd()))
 
 
