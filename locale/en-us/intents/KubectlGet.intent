@@ -1,0 +1,1 @@
+(kubectl|QCTL|Cube Cuttles|cube city|cube cdl|cube ctl|cube city will|cube cutter) (get|gate) (parts|pods|ns|nodes|services|svc) ((minus o wide|)(((minus n|from namespace) {namespace_name}| all namespaces)|)|(((minus n|from namespace) {namespace_name}| all namespaces)|)(minus o wide|))

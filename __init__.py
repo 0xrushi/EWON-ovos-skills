@@ -82,6 +82,12 @@ class MyEwonSkill(MycroftSkill):
         change_directory(convert_to_path(received_text), self.handle_change_directory_prompt)
         self.log.info("current curdir " + str(os.getcwd()))
 
+    @intent_handler('KubectlGet.intent')    
+    def kubectlget(self, message):
+        received_text = message.data.get('utterance')
+        self.log.info("Messageget parsed is " + str(received_text))
+        self.speak_dialog("exposing.getintent")
+
 
     @intent_handler('WakeUp.intent')
     def wake_up(self, message):
