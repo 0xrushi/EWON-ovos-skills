@@ -31,36 +31,6 @@ def convert_to_path(input_string):
 
     return "/" + path
 
-def change_directory(instance, target_path):
-    """
-    Change the current directory to a specified target path.
-
-    If the target path doesn't exist, prompt the user (once) to recursively go back and change to a valid path.
-
-    Returns:
-        True if the change of directory was successful.
-    """
-    response_flag = False
-    while not os.path.isdir(target_path) and target_path != "/":
-        if not response_flag:
-            # response = input("Path not found. Do you want to go one directory back? (y/n): ")
-            response = instance.ask_yesno("Path not found. Do you want to go one directory back?")
-            instance.log.info(" response is " + response)
-        if response == "yes":
-            # Move one directory back
-            target_path = os.path.dirname(target_path)
-            response_flag = True
-        else:
-            return False
-
-    if target_path != "/":
-        os.chdir(target_path)
-        print("Changed directory to:", os.getcwd())
-    else:
-        print("Path does not exist")
-
-    return True
-
 class MyEwonSkill(MycroftSkill):
     def __init__(self):
         """ The __init__ method is called when the Skill is first constructed.
@@ -69,6 +39,35 @@ class MyEwonSkill(MycroftSkill):
         """
         super().__init__()
         self.learning = True
+    def change_directory(self, target_path):
+        """
+        Change the current directory to a specified target path.
+
+        If the target path doesn't exist, prompt the user (once) to recursively go back and change to a valid path.
+
+        Returns:
+            True if the change of directory was successful.
+        """
+        response_flag = False
+        while not os.path.isdir(target_path) and target_path != "/":
+            if not response_flag:
+                # response = input("Path not found. Do you want to go one directory back? (y/n): ")
+                response = self.ask_yesno("Path not found. Do you want to go one directory back?")
+                self.log.info("response self " + response)
+            if response == "yes":
+                # Move one directory back
+                target_path = os.path.dirname(target_path)
+                response_flag = True
+            else:
+                return False
+
+        if target_path != "/":
+            os.chdir(target_path)
+            print("Changed directory to:", os.getcwd())
+        else:
+            print("Path does not exist")
+
+        return True
 
     @classproperty
     def runtime_requirements(self):
@@ -127,7 +126,7 @@ class MyEwonSkill(MycroftSkill):
         self.log.info("Messagek parsed is " + str(received_text))
         self.speak_dialog("exposing.cdbahs")
         self.log.info("previous curdir " + str(os.getcwd()))
-        change_directory(self, convert_to_path(received_text))
+        self.change_directory(convert_to_path(received_text))
         self.log.info("current curdir " + str(os.getcwd()))
 
 
